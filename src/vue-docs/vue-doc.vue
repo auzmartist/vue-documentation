@@ -7,11 +7,17 @@
 			<code v-if="component.sample">{{component.sample}}</code>
 		</div>
 		<div class="sandbox">
-			<component :is="component" v-bind="componentIO.props"/>
+			<component :is="component" v-bind="componentIO.props">
+				<template v-for="(s, key) of slots">
+					<div v-if="key !== 'default'" :slot="key" :key="key" v-html="s"></div>
+					<template v-else>{{s}}</template>
+				</template>
+			</component>
 		</div>
 		<section class="docs">
-			<!-- <doc-prop v-for="(prop, key) of rProps" :name="key" :prop="prop" :data-name="key" :key="key"/> -->
-			<article :class="['prop', {gray: !selectedProp}]">
+			<article :class="['prop', {gray: !selectedProp}]" :style="{
+					'min-height': `${Object.keys(component.props).length * 20}px`,
+				}">
 				<doc-prop v-if="selectedProp"
 					:name="selectedProp[0]" :prop="selectedProp[1]" :data-name="selectedProp[0]"/>
 				<h4 v-else class="centered">Select a prop at right</h4>
@@ -21,7 +27,9 @@
 				@prop-select="selectProp"
 				@event-select="selectEvent"/>
 
-			<article v-if="Object.keys(rEvents).length > 0" :class="['event', {gray: !selectedEvent}]">
+			<article v-if="Object.keys(rEvents).length > 0" :class="['event', {gray: !selectedEvent}]" :style="{
+					'min-height': `${Object.keys(component.props).length * 20}px`,
+				}">
 				<doc-event v-if="selectedEvent"
 					:name="selectedEvent[0]" :event="selectedEvent[1]" :data-name="selectedEvent[0]"/>
 				<h4 v-else class="centered">Select an event at left</h4>
@@ -52,11 +60,14 @@ export default {
 			default: () => ({}),
 			note: 'Notes and sample values for props.',
 		},
+		slots: {
+			type: Object,
+			default: () => ({}),
+		}
 	},
 	setup(props, ctx) {
 		const {rProps, rEvents, selectProp, selectEvent} = useVmInfo(props, ctx)
 
-		console.log(rProps.value)
 		return {
 			rProps,
 			rEvents,

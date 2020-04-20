@@ -7,8 +7,8 @@
 <script>
 import {components} from './vue-docs'
 import docs from './components/component.docs.js'
-import PropTypes from './components/prop-types.vue'
 import CardSelect from './components/card-select.vue'
+import PropTypes from './components/prop-types.vue'
 
 export default {
 	name: 'app',

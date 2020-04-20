@@ -11,7 +11,11 @@
 		</section>
 		<section class="docs">
 			<vue-doc v-for="(c, key) of components" :id="`${c.name}`" :key="key"
-				:component="c" :props="docs[c.name] && docs[c.name].props" :events="docs[c.name] && docs[c.name].events"></vue-doc>
+				:component="c"
+				:props="docs[c.name] && docs[c.name].props"
+				:events="docs[c.name] && docs[c.name].events"
+				:slots="docs[c.name] && docs[c.name].slots"
+			/>
 		</section>
 	</div>
 </template>
@@ -54,7 +58,6 @@ export default {
 @require '~style/mixins.styl'
 
 .vue-doc-library {
-	absPos(0, 0, 0, 0)
 	z-index -1
 	flexXY(space-between, flex-start)
 
@@ -62,6 +65,10 @@ export default {
 	font-size: 0.75rem
 	line-height: 1.1rem
 	letter-spacing: 0.03rem
+	display: table-row
+	& > section {
+		display: table-cell
+	}
 
 	section.nav {
 		height: 100%
@@ -70,7 +77,7 @@ export default {
 		background: #f4f4f4
 		nav {
 			position: sticky
-			top: 0
+			top: 28px
 		}
 		nav a {
 			color: $c-prop
@@ -83,7 +90,7 @@ export default {
 	}
 
 	section.docs {
-		flex-grow: 1
+		width: 100%
 		background: #eaeced
 		padding: 12px
 	}

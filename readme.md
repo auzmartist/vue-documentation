@@ -45,5 +45,46 @@ export default {
 }
 ```
 
+## Dealing With Slots And Sample Values
+
+Documentation should live within components, but to demonstrate a component in the sandbox, you may need to pass some sample values or slots which can't be distributed with your components.
+
+With `vue-documentation`, sample prop values can be passed like so:
+
+```html
+<vue-doc :component="button-redirect" :props="{
+  location: '/some/redirect/url',
+  querystring: {foo: 'bar'}
+}">
+```
+
+You can also pass slot content directly to a &lt;vue-doc&gt; component. The default slot should be assigned to the `default` key.
+
+```html
+<vue-doc :component="button-icon" :slots="{
+  default: `Click Me`,
+  icon: `<img src="/path/to/some/icon.png"/>`,
+}" />
+```
+
+If using the `vue-doc-library` component, these supplementary values can be passed in via the `:docs` prop which accepts an object with the following shape:
+
+```js
+const docs = {
+  'button-redirect': {
+    props: {
+      location: '/some/redirect/url',
+      querystring: {foo: 'bar'},
+    }
+  },
+  'button-icon': {
+    slots: {
+      default: 'Click Me',
+      icon: `<img src="/path/to/some/icon.png"/>`,
+    },
+  },
+}
+```
+
 ## Development
 > Contributions welcome!
