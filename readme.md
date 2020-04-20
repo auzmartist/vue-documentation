@@ -25,23 +25,23 @@ Similar to the (now archived) `propdoc` package, `vue-doc` parses a number of ne
 
 ```js
 export default {
-	name: 'component-name',
-	introduction: 'A short blurb about the component',
-	description: 'A more thorough description of the component and what it does.',
-	sample: '<component-name :foo="bar" />', // renders within a <code></code> block
-	props: {
-		foo: {
-			type: String,
-			required: true,
-			note: 'Please always pass either "bar" or "baz" here.', // Renders as HTML
-		}
-	},
-	events: {
-		'some-event': {
-			type: Object, // the type of the event payload
-			node: 'A description of the event and when it emits', // Renders as HTML
-		}
-	}
+  name: 'component-name',
+  introduction: 'A short blurb about the component',
+  description: 'A more thorough description of the component and what it does.',
+  sample: '<component-name :foo="bar" />', // renders within a <code></code> block
+  props: {
+    foo: {
+      type: String,
+      required: true,
+      note: 'Please always pass either "bar" or "baz" here.', // Renders as HTML
+    }
+  },
+  events: {
+    'some-event': {
+      type: Object, // the type of the event payload
+      node: 'A description of the event and when it emits', // Renders as HTML
+    }
+  }
 }
 ```
 
