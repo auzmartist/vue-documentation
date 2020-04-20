@@ -22,12 +22,3 @@ export default {
 	}),
 }
 </script>
-
-<style lang="stylus" scoped>
-.app {
-	font-family: 'Consolas', monospace
-	font-size: 0.75rem
-	line-height: 1.1rem
-	letter-spacing: 0.03em
-}
-</style>

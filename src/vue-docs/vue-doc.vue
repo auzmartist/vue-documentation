@@ -77,6 +77,11 @@ export default {
 }
 </script>
 
+
+<style lang="stylus">
+@require '~style/app.styl'
+</style>
+
 <style lang="stylus" scoped>
 @require '~style/variables.styl'
 @require '~style/mixins.styl'
@@ -84,6 +89,11 @@ export default {
 
 .vue-doc{
 	padding: 24px 0 36px 0
+
+	font-family: 'Consolas', monospace
+	font-size: 0.75rem
+	line-height: 1.1rem
+	letter-spacing: 0.03rem
 	.doc {
 		font-size: 0.85rem
 		h2 {

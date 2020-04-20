@@ -7,6 +7,8 @@ const resolve = (rel) => path.resolve(__dirname, '..', rel)
 
 const load = (test, ...use) => ({test, use, exclude: /node_modules/})
 
+const emptyPlugin = {apply: () => null}
+
 module.exports = (env) => {
 	const config = {
 		mode: env.prod ? 'production' : 'development',
@@ -53,6 +55,13 @@ module.exports = (env) => {
 		},
 		plugins: [
 			new VueWebpackPlugin(),
+			!env.dev ? emptyPlugin : new HtmlWebpackPlugin({
+				template: resolve('build/template.html'),
+				inject: 'body',
+			}),
+			!env.dev ? emptyPlugin : new CopyWebpackPlugin([
+				{from: resolve('static'), to: 'static'},
+			]),
 		],
 		devServer: {
 			port: 9999,
@@ -62,17 +71,6 @@ module.exports = (env) => {
 		},
 	}
 
-	if(!env.prod) {
-		config.plugins.concat([
-			new HtmlWebpackPlugin({
-				template: resolve('build/template.html'),
-				inject: 'body',
-			}),
-			new CopyWebpackPlugin([
-				{from: resolve('static'), to: 'static'},
-			]),
-		])
-	}
 
 	return config
 }

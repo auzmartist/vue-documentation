@@ -45,15 +45,23 @@ export default {
 }
 </script>
 
+<style lang="stylus">
+@require '~style/app.styl'
+</style>
+
 <style lang="stylus" scoped>
-@require '~style/mixins.styl'
 @require '~style/variables.styl'
+@require '~style/mixins.styl'
 
 .vue-doc-library {
 	absPos(0, 0, 0, 0)
 	z-index -1
-	background: $c-black
 	flexXY(space-between, flex-start)
+
+	font-family: 'Consolas', monospace
+	font-size: 0.75rem
+	line-height: 1.1rem
+	letter-spacing: 0.03rem
 
 	section.nav {
 		height: 100%
