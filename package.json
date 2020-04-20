@@ -1,0 +1,45 @@
+{
+  "name": "vue-documentation",
+  "version": "0.1.0",
+  "description": "Vue component documentation made simple.",
+  "main": "index.js",
+  "scripts": {
+    "build": "node build/index.js",
+    "dev": "webpack-dev-server --env.dev --config ./build/webpack.config.js --quiet",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "vue",
+    "components",
+    "documentation",
+    "sandbox"
+  ],
+  "author": "Austin Martin (auz.martin@gmail.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-typescript": "7.9.0",
+    "@babel/register": "^7.9.0",
+    "babel-loader": "^8.1.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "core-js": "^3.6.5",
+    "css-loader": "^3.5.2",
+    "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^4.2.0",
+    "style-loader": "^1.1.4",
+    "stylus-loader": "^3.0.2",
+    "stylus": "^0.54.7",
+    "typescript": "^3.8.3",
+    "vue-loader": "^15.9.1",
+    "@vue/composition-api": "0.5.0",
+    "vue-template-compiler": "^2.6.11",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6",
+    "webpack-cli": "^3.3.11",
+    "webpack": "^4.42.1",
+    "webpack-merge": "^4.2.2",
+    "webpack-dev-server": "^3.10.3"
+  }
+}

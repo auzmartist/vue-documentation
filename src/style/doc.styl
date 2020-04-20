@@ -1,0 +1,35 @@
+@require '~style/variables.styl'
+
+.doc, .doc-prop, .doc-event {
+	color: $c-black
+	font-size: 0.9em
+	strong {
+		font-weight: bold
+		letter-spacing: 0.1em
+	}
+
+	hr {
+		border: none
+		height: 1px
+		background: #ddd
+	}
+
+	i {
+		font-weight: 100
+		font-style italic
+	}
+
+	p {
+		color: #565859
+	}
+
+	& >>> code {
+		padding: 2px 4px 4px 2px
+		background: #ddd
+		color: #343537
+		font-weight: bold
+		letter-spacing: 0.03em
+		font-size 0.96em
+		border-radius: 3px
+	}
+}
