@@ -12,4 +12,9 @@ export default {
 			'event-select': `Indicates the event name which was selected.`,
 		},
 	},
+	'hint-comp': {
+		props: {
+			label: 'Something',
+		},
+	},
 }

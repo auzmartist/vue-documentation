@@ -8,11 +8,11 @@ export default function useVmInfo({component, props, events}, ctx) {
 		const obj = {}
 		for(let key in component.props) {
 			obj[key] = {
-				note: props[key]?.note,
 				...component.props[key],
 				selected: rSelectedProp.value === key,
-				value: props[key]?.value,
-			}
+				value: props[key],
+			},
+
 			obj[key].defaultValue = obj[key].default ? typeof obj[key].default === 'function' ? obj[key].default() : obj[key].default :
 				// if no default can be assigned and the prop is required, assign the default instance of type
 				!!obj[key].required && obj[key].type ? new obj[key].type() : null
