@@ -5,6 +5,7 @@
 		<p>{{typeof str}}: {{str}}</p>
 		<p>{{typeof arr}}: {{arr}}</p>
 		<p>{{typeof obj}}: {{obj}}</p>
+		<p>{{typeof fn}}: {{fn}}</p>
 		<button @click="() => $emit('event', {
 			random: Math.random().toString(36).substr(2, 7)
 		})">Emit Event</button>
@@ -34,8 +35,15 @@ export default {
 		obj: {
 			type: Object,
 			default: () => ({foo: 'bar'}),
-			nodte: `Any 'ol object.`
+			note: `Any 'ol object.`
 		},
+		fn: {
+			type: Function,
+			default: () => (function() {
+				return 'default fn'
+			}),
+			note: 'Any function',
+		}
 	},
 	events: {
 		event: {

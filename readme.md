@@ -26,6 +26,7 @@ Similar to the (now archived) `propdoc` package, `vue-doc` parses a number of ne
 ```js
 export default {
   name: 'component-name',
+  deprecated: false,
   introduction: 'A short blurb about the component',
   description: 'A more thorough description of the component and what it does.',
   sample: '<component-name :foo="bar" />', // renders within a <code></code> block

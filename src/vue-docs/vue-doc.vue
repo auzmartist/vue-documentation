@@ -1,7 +1,7 @@
 <template>
 	<div class="vue-doc">
 		<div class="doc">
-			<h2>&lt;{{component.name}}&gt;</h2>
+			<h2 :class="{deprecated: component.deprecated}">&lt;{{component.name}}&gt;</h2>
 			<blockquote>{{component.introduction}}</blockquote>
 			<p>{{component.description}}</p>
 			<code v-if="component.sample">{{component.sample}}</code>
@@ -10,13 +10,13 @@
 			<component :is="component" v-bind="componentIO.props">
 				<template v-for="(s, key) of slots">
 					<div v-if="key !== 'default'" :slot="key" :key="key" v-html="s"></div>
-					<template v-else>{{s}}</template>
+					<div v-else v-html="s" :key="key"></div>
 				</template>
 			</component>
 		</div>
-		<section class="docs">
+		<section class="docs" v-if="component.props != null || component.events != null">
 			<article :class="['prop', {gray: !selectedProp}]" :style="{
-					'min-height': `${Object.keys(component.props).length * 20}px`,
+					'min-height': `${Object.keys(component.props || {}).length * 20}px`,
 				}">
 				<doc-prop v-if="selectedProp"
 					:name="selectedProp[0]" :prop="selectedProp[1]" :data-name="selectedProp[0]"/>
@@ -28,7 +28,7 @@
 				@event-select="selectEvent"/>
 
 			<article v-if="Object.keys(rEvents).length > 0" :class="['event', {gray: !selectedEvent}]" :style="{
-					'min-height': `${Object.keys(component.props).length * 20}px`,
+					'min-height': `${Object.keys(component.props || {}).length * 20}px`,
 				}">
 				<doc-event v-if="selectedEvent"
 					:name="selectedEvent[0]" :event="selectedEvent[1]" :data-name="selectedEvent[0]"/>
@@ -108,9 +108,26 @@ export default {
 	.doc {
 		font-size: 0.85rem
 		h2 {
+			position relative
+			display: inline-block
 			font-size: 1.4rem
 			color: $c-black
 			margin-bottom: 0.5rem
+			&.deprecated {
+				color: #c32
+				&::after {
+					content: 'Deprecated'
+					absPos(-0.2em, auto, auto, 110%)
+					font-size: 0.5em
+					color: $c-black
+					padding: 4px 8px
+					border-radius: 6px
+					font-weight: bold
+					text-transform uppercase
+					letter-spacing: 0.1em
+					background: lighten($c-black, 70%)
+				}
+			}
 		}
 		blockquote {
 			color: lighten($c-black, 40%)

@@ -3,7 +3,7 @@ import PropTypes from '../components/prop-types.vue'
 export default {
 	'card-select': {
 		props: {
-			selected: {value: 'CAT2'},
+			selected: 'CAT2',
 		},
 	},
 	'prop-types': {
@@ -16,5 +16,11 @@ export default {
 		props: {
 			label: 'Something',
 		},
+	},
+	'vue-slots': {
+		slots: {
+			default: '<h2>H2</h2>',
+			name: '<p>named slot content</p>',
+		}
 	},
 }
